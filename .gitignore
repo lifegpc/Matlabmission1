@@ -1,2 +1,4 @@
 #autosave file
-.asv
+*.asv
+#Result file
+*.mat
