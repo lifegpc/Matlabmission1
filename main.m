@@ -8,6 +8,7 @@ sa=Screen('Screens');%获取屏幕
 su=max(sa);%选择最大的
 white=WhiteIndex(su);%白色
 grey=white/2;%灰色
+HideCursor;%隐藏鼠标
 [w,wr]=PsychImaging('OpenWindow',su,grey);%新建窗口
 hz=Screen('NominalFrameRate',w);%屏幕刷新率
 ht=1/hz;%每帧持续时间
@@ -40,9 +41,11 @@ for i=1:mm
     while true%等待按键
         [s,k]=KbWait();%s时间 k按键
         if k(38)==1%向上
+            playsound(c(i),0);%播放反馈声音
             r=[r 0];
             break;
         elseif k(40)==1%向下
+            playsound(c(i),1);%播放反馈声音
             r=[r 1];
             break;
         end
@@ -62,6 +65,7 @@ for i=1:mm%进行判断
         re(i,3)=false;
     end
 end
+ShowCursor;%显示鼠标
 msgbox([char([20320 22238 31572 23545 20102]) num2str(num) char([39064 12290])],char([27979 35797 32467 26524]));
 %弹出对话框 输出结果 你回答对了num次。
 paras=inputdlg({char([25991 20214 21517 31216])},char([23384 20648 25991 20214]),1,{'re.mat'});
